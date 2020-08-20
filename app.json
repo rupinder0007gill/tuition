@@ -1,0 +1,44 @@
+{
+  "addons": [
+    "heroku-postgresql","sendgrid","rediscloud"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "env": {
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_MASTER_KEY": {
+      "required": true
+    },
+    "REDIS_PROVIDER": {
+      "required": true,
+      "description": "To connect to your Redis addon",
+      "value": "REDISCLOUD_URL"
+    },
+    "MALLOC_ARENA_MAX": {
+      "required": true,
+      "description": "reduce Sidekiq's memory usage",
+      "value": "2"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "eaventumx",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
+  },
+  "stack": "heroku-18"
+}
