@@ -840,6 +840,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@client-side-validations/client-side-validations@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.1.4.tgz#fdd6c3f22ba1f08f64e32d72918cfc77e0f778e0"
+  integrity sha512-rloe9JV9FU3eFWH3JvDkJ3JIikTQDIvcG0ZEgkJc6Z1UKHMG/f4Pg0bN6jeFmsYp/9v6usN0RkPPNCOzfaG90w==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -919,6 +924,11 @@
     webpack-assets-manifest "^3.1.1"
     webpack-cli "^3.3.10"
     webpack-sources "^1.4.3"
+
+"@tkrotoff/bootstrap-floating-label@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@tkrotoff/bootstrap-floating-label/-/bootstrap-floating-label-0.7.0.tgz#727c5654a954131fd688ee6590449cde3e9013b4"
+  integrity sha512-YLw6MBreep7dWkKi8oc6fUD+aNfuZHxoyfVx43qAdWR89FyE9BK2AF04blbynJSnCfTRHkGfs9FnDZ291Zi50A==
 
 "@types/glob@^7.1.1":
   version "7.1.3"
@@ -1163,6 +1173,11 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+animate.css@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.0.tgz#dec2aabe4babfc6f6777f9a5cccd132838729b50"
+  integrity sha512-0aVcfWDeU9ykV6vjn1P67ZSs01jxoUQZCGaYbkk0SIIelIG8kUdLrIkua1+VabHfTtsSivDRMMn0ILPvZum2gw==
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -2425,6 +2440,21 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+datatables.net-bs4@^1.10.21:
+  version "1.10.21"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs4/-/datatables.net-bs4-1.10.21.tgz#7a9ae489ebbd815cd869292450d284edd0f44697"
+  integrity sha512-F9zabYw8ZLXfjvj2S+BdnbkEUsL48bJwWxQFrA47cOXrIvsMhW8nmqPZcIMK4ko3k1i74nbpWLO1t+vueQKoXQ==
+  dependencies:
+    datatables.net "1.10.21"
+    jquery ">=1.7"
+
+datatables.net@1.10.21:
+  version "1.10.21"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.21.tgz#f1d35c8e5c3eb7f5caef39e80cd5b836a8c77103"
+  integrity sha512-/bSZtxmf3GTpYcvEmwZ8q26I1yhSx8qklR2B+s1K8+/51UW/zc2zTYwJMqr/Z+iCYixAc00ildj4g2x0Qamolw==
+  dependencies:
+    jquery ">=1.7"
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3609,6 +3639,16 @@ import-local@^2.0.0:
     pkg-dir "^3.0.0"
     resolve-cwd "^2.0.0"
 
+imports-loader@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/imports-loader/-/imports-loader-1.1.0.tgz#1c3a388d0c5cd7f9eb08f3646d4aae3b70e57933"
+  integrity sha512-HcPM6rULdQ6EBLVq+5O+CF9xb7qiUjsRm6V28bTG/c3IU5sQkVZzUDwYY0r4jHvSAmVFdO9WA/vLAURR5WQSeQ==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^2.7.0"
+    source-map "^0.6.1"
+    strip-comments "^2.0.1"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
@@ -4003,7 +4043,7 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-"jquery@>=1.5.0 <4.0", jquery@^3.5.1:
+"jquery@>=1.5.0 <4.0", jquery@>=1.7, jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -6878,6 +6918,11 @@ strip-bom@^2.0.0:
   integrity sha1-YhmoVhZSBJHzV4i9vxRHqZx+aw4=
   dependencies:
     is-utf8 "^0.2.0"
+
+strip-comments@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/strip-comments/-/strip-comments-2.0.1.tgz#4ad11c3fbcac177a67a40ac224ca339ca1c1ba9b"
+  integrity sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw==
 
 strip-eof@^1.0.0:
   version "1.0.0"

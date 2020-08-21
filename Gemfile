@@ -61,6 +61,10 @@ group :production, :staging, :development, :test do
   # Read more: http://norman.github.io/friendly_id/file.Guide.html
   gem 'friendly_id', '~> 5.4'
 
+  # Use Active Storage variant
+  # Read more: https://github.com/janko/image_processing
+  gem 'inline_svg', '~> 1.7', '>= 1.7.1'
+
   # Loaf manages and displays breadcrumb trails in your Rails app. It aims to handle breadcrumb
   # data through easy dsl and expose it through view helpers without any assumptions about markup.
   gem 'loaf', '~> 0.9.0'
@@ -131,6 +135,14 @@ group :development, :test do
   # Read more: https://github.com/deivid-rodriguez/byebug
   gem 'byebug', '~> 11.1'
 
+  # Behaviour Driven Development with elegance and joy
+  # Read more: https://cucumber.io/docs/installation/ruby/
+  gem 'cucumber-rails', '~> 2.1', require: false
+
+  # Strategies for cleaning databases
+  # Read more: https://github.com/DatabaseCleaner/database_cleaner
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.5'
+
   # factory_bot_rails provides integration between factory_bot
   # Read more: https://github.com/thoughtbot/factory_bot_rails
   gem 'factory_bot_rails', '~> 6.1'
@@ -174,7 +186,7 @@ group :development do
 
   # Pronto runs analysis quickly by checking only the relevant changes
   # Read more: https://github.com/prontolabs/pronto
-  gem 'pronto', '~> 0.10.0'
+  gem 'pronto', github: 'prontolabs/pronto'
   gem 'pronto-brakeman', '~> 0.10.0', require: false
   gem 'pronto-erb_lint', '~> 0.1.5', require: false
   gem 'pronto-rails_best_practices', '~> 0.10.0', require: false

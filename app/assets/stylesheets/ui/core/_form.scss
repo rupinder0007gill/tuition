@@ -1,0 +1,15 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'variable';
+$input-line-height-sm: $input-line-height;
+$input-line-height-md: $line-height-lg;
+$input-line-height-lg: $input-line-height;
+$input-padding-y: 0.725rem;
+$input-bg: $mirage;
+
+@import '@tkrotoff/bootstrap-floating-label/src/bootstrap-floating-label';
+
+input[type="checkbox"] {
+  -moz-appearance: none !important;
+}

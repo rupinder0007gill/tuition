@@ -1,0 +1,34 @@
+<div class="users-session-new background-size-cover text-white p-6 vh-100">
+  <div class="row container">
+    <div class="col-lg-7 col-md-6"></div>
+    <div class="col-lg-5 col-md-6 bg-mirage rounded-lg ">
+      <div class="p-5 mx-auto w-100">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="floating-label my-5">
+            <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control lh-lg bg-mirage text-white my-3 rounded-lg border-oxford-blue', placeholder: 'name@example.com' %>
+            <%= f.label :email, 'Username or Email address' %>
+          </div>
+          <div class="floating-label my-5">
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control lh-lg bg-mirage text-white my-3 rounded-lg border-oxford-blue', placeholder: '************' %>
+            <%= f.label :password %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="form-check my-3">
+              <%= f.check_box :remember_me, class: "form-check-input" %>
+              <%= f.label :remember_me, class: "form-check-label" %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Login to your Account!", class: 'btn btn-lg btn-cornflower-blue rounded-lg btn-block' %>
+          </div>
+        <% end %>
+
+        <%= render "users/shared/links" %>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -34,3 +34,12 @@
     }
   }
 }
+
+.trix-button {
+  background: white !important;
+}
+
+trix-toolbar .trix-button.trix-active {
+
+  background: #7750f8 !important;
+}

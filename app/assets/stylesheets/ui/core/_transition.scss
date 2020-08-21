@@ -1,0 +1,57 @@
+@import 'variable';
+
+// Used to generate utilities
+@each $theme-color in $theme-colors {
+  $theme-colorKey: nth($theme-color, 1);
+  $theme-colorValue: nth($theme-color, 2);
+  .bg-#{$theme-colorKey}-on-hover {
+    transition: all 0.5s;
+
+    &:hover {
+      background: $theme-colorValue !important;
+      border-color: $theme-colorValue !important;
+    }
+  }
+  .text-#{$theme-colorKey}-on-hover {
+    transition: all 0.5s;
+
+    &:hover {
+      color: $theme-colorValue !important;
+    }
+  }
+}
+
+@each $spaceh in $spacers {
+  $spaceKey: nth($spaceh, 1);
+  $spaceValue: nth($spaceh, 2);
+  .phl-#{$spaceKey} {
+    transition: all 0.5s;
+
+    &:hover {
+      padding-left: $spaceValue !important;
+    }
+  }
+  .phr-#{$spaceKey} {
+    transition: all 0.5s;
+
+    &:hover {
+      padding-right: $spaceValue !important;
+    }
+  }
+
+  .pht-#{$spaceKey} {
+    transition: all 0.5s;
+
+    &:hover {
+      padding-top: $spaceValue !important;
+    }
+  }
+
+  .phb-#{$spaceKey} {
+    transition: all 0.5s;
+
+    &:hover {
+      padding-bottom: $spaceValue !important;
+    }
+  }
+}

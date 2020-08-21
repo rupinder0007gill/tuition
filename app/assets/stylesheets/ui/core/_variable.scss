@@ -1,0 +1,95 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Color system
+$mirage: #1d2333;
+$mirage-darker: #161b28;
+$cornflower-blue: #7750f8;
+$oxford-blue: #3f485f;
+$emerald: #40d04f;
+$screamin_green: #4ff461;
+$wild_watermelon: #ff5384;
+
+$tango: #f47c20;
+$downy: #6eccb2;
+$dove-gray: #636363;
+
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg:                   $mirage-darker;
+$body-color:                $white;
+$body-text-align: centre;
+
+//////Header/////
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "mirage": $mirage, "cornflower-blue": $cornflower-blue, "black": $black, "oxford-blue": $oxford-blue,
+  "emerald": $emerald,"white": $white, "wild_watermelon": $wild_watermelon
+);
+
+// where your navbar
+$navbar-nav-link-padding-x: 1.5rem;
+$navbar-light-color: $black;
+$navbar-light-hover-color: $gray-500;
+$navbar-padding-y: 0.5rem;
+$navbar-padding-x: 0;
+$navbar-dark-toggler-border-color: transparent;
+$navbar-light-active-color: $black;
+
+$navbar-dark-color: rgba(255, 255, 255, 0.5);
+$navbar-dark-hover-color: $white;
+$navbar-dark-active-color: $white;
+
+// nav
+
+// Dropdown
+$dropdown-bg: $mirage;
+$dropdown-color: $emerald;
+$dropdown-font-size: 0.75rem;
+$dropdown-padding-y: 6px;
+$dropdown-border-radius: 10px;
+$dropdown-box-shadow: 3px 5px 40px 0 rgba(0, 0, 0, 0.06);
+$dropdown-border-color: transparent;
+$dropdown-border-width: 0;
+$dropdown-color: $white;
+$dropdown-link-color: $white;
+$dropdown-link-hover-color: $emerald;
+$dropdown-link-hover-bg: $mirage;
+$dropdown-link-active-color: $screamin_green;
+$dropdown-link-active-bg:  $mirage-darker;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacers: (
+  0: 0,
+  1: $spacer / 4,
+  2: $spacer / 2,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 3,
+);
+
+// border
+//
+$border-radius-lg: 1rem;
+
+$form-check-input-checked-bg-color: $emerald;
+$form-check-input-checked-border-color: $oxford-blue;
+$form-check-input-bg: transparent;
+$form-check-input-border: $oxford-blue 1px solid;
+$form-check-input-focus-border: $cornflower-blue 1px solid;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba(119, 80, 248, 0.5);
+// Links
+//
+// Style anchor elements.
+$link-color:  $gray-500;
+$link-hover-color: darken($link-color, 15%);
+$link-hover-decoration: none;
+$link-decoration: none;

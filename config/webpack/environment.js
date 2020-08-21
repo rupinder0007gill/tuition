@@ -1,3 +1,12 @@
-const { environment } = require('@rails/webpacker')
+const {environment} = require('@rails/webpacker');
+const datatables = require('./loaders/datatables');
+const webpack = require('webpack');
 
-module.exports = environment
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+  Popper: ['popper.js', 'default'],
+}));
+
+environment.loaders.append('datatables', datatables);
+module.exports = environment;

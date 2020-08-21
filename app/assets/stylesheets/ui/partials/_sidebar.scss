@@ -1,0 +1,36 @@
+@import '../core/variable';
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  padding-top: 20px;
+
+  &.left {
+    left: 0;
+
+    &.mini {
+      width: 80px;
+    }
+
+    &.full {
+      width: 300px;
+
+      &.show {
+        animation: slideInLeft; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 0.5s;
+      }
+
+      &:not(.show) {
+        animation: fadeOutLeft; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 0.5s;
+      }
+    }
+  }
+
+  &.right {
+    right: 0;
+  }
+}

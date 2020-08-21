@@ -1,0 +1,19 @@
+@import '../core/variable';
+
+.navbar-toggler {
+  display: flex !important;
+  color: $navbar-dark-color;
+
+  &:focus {
+    color: $navbar-dark-color;
+    box-shadow: none;
+  }
+
+  &.collapsed {
+    color: $navbar-dark-color;
+  }
+
+  &:not(.collapsed) {
+    color: $white;
+  }
+}

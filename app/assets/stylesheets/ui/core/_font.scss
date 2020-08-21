@@ -1,0 +1,38 @@
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.heading-underline::after {
+  content: '';
+  width: 100px;
+  height: 2px;
+  background: #000;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+// scss-docs-start font-sizes-map
+$font-sizes: (
+  "8", "10", "12", "14", "18","20", "24","28", "40"
+);
+
+// Used to generate font-sizes
+@each $font-size in $font-sizes {
+  .font-size-#{$font-size} {
+    font-size: #{$font-size}px;
+  }
+}
+
+// scss-docs-start font-line-height
+$line-heights: (
+  "30"
+);
+
+// Used to generate font-line-height
+@each $line-height in $line-heights {
+  .line-height-#{$line-height} {
+    line-height: #{$line-height}px;
+  }
+}
