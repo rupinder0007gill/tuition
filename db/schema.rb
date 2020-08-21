@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_002139) do
+ActiveRecord::Schema.define(version: 2020_08_21_002450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "versions", force: :cascade do |t|
+    t.uuid "uuid_token", default: -> { "gen_random_uuid()" }, null: false
+    t.uuid "uuid_token_2", default: -> { "gen_random_uuid()" }, null: false
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "object_changes"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["uuid_token"], name: "index_versions_on_uuid_token", unique: true
+    t.index ["uuid_token_2"], name: "index_versions_on_uuid_token_2", unique: true
+  end
 
 end
