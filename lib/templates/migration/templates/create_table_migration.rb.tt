@@ -1,0 +1,41 @@
+class <%= migration_class_name %> < "#{ActiveRecord::VERSION::MAJOR}.#{ActiveRecord::VERSION::MINOR}"
+  def change
+    create_table :<%= table_name %><%= primary_key_type %>, if_not_exists: true do |t|
+      ## uuid token
+      t.uuid :uuid_token, null: false, default: 'gen_random_uuid()'
+
+      ## fields
+<% attributes.each do |attribute| -%>
+<% if attribute.password_digest? -%>
+      t.string :password_digest<%= attribute.inject_options %>
+<% elsif attribute.token? -%>
+      t.string :<%= attribute.name %><%= attribute.inject_options %>
+<% elsif attribute.reference? -%>
+<% if (@referenced ||= true) -%>
+
+      ## reference<% @referenced = false  %>
+<% end -%>
+      t.<%= attribute.type %> :<%= attribute.name %><%= attribute.inject_options %>
+<% elsif !attribute.virtual? -%>
+      t.<%= attribute.type %> :<%= attribute.name %><%= attribute.inject_options %>
+<% end -%>
+<% end -%>
+
+      ## token index
+      t.index :uuid_token, unique: true
+
+      ## Discard
+      t.datetime :discarded_at, index: true
+<% if options[:timestamps] %>
+      ## timestamp
+      t.timestamps
+<% end -%>
+    end
+<% attributes.select(&:token?).each do |attribute| -%>
+    add_index :<%= table_name %>, :<%= attribute.index_name %><%= attribute.inject_index_options %>, unique: true
+<% end -%>
+<% attributes_with_index.each do |attribute| -%>
+    add_index :<%= table_name %>, :<%= attribute.index_name %><%= attribute.inject_index_options %>
+<% end -%>
+  end
+end
