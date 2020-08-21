@@ -1,30 +1,6 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: courses
-#
-#  id                 :bigint           not null, primary key
-#  discarded_at       :datetime
-#  end_datetime       :datetime         not null
-#  length_of_students :bigint           not null
-#  slug               :string           not null
-#  start_datetime     :datetime         not null
-#  state              :string           default("draft"), not null
-#  title              :string           not null
-#  uuid_token         :uuid             not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  user_id            :bigint           not null
-#
-# Indexes
-#
-#  index_courses_on_discarded_at  (discarded_at)
-#  index_courses_on_slug          (slug) UNIQUE
-#  index_courses_on_user_id       (user_id)
-#  index_courses_on_uuid_token    (uuid_token) UNIQUE
-#
-class Teachers::Course < Course
+class Enrollment < ApplicationRecord
   ##############################################################################
   ### Attributes ###############################################################
 
@@ -33,16 +9,24 @@ class Teachers::Course < Course
 
   ##############################################################################
   ### Includes and Extensions ##################################################
+  include AASM
 
   ##############################################################################
   ### Callbacks ################################################################
 
   ##############################################################################
   ### Associations #############################################################
+  belongs_to :user
+  belongs_to :course
 
   ##############################################################################
   ### Validations ##############################################################
+  validate :enrollment_count_validation
+  validates :course_id, uniqueness: { conditions: -> { kept }, scope: :user_id }
 
+  def enrollment_count_validation
+    errors.add(:states, "can't join more than 3 courses per month") if user.enrollments.where('created_at > ?', Date.current.beginning_of_month.beginning_of_day).count > 3
+  end
   ##############################################################################
   ### Scopes ###################################################################
 
@@ -51,15 +35,34 @@ class Teachers::Course < Course
 
   ##############################################################################
   ### Class Methods ############################################################
+  aasm column: 'state', logger: Rails.logger do
+    state :draft, initial: true
+    state :approved
+    state :rejected
 
+    event :enrollment_approved, after_commit: :notify_approve do
+      transitions from: %i[draft rejected], to: :approved
+    end
+
+    event :enrollment_rejected, after_commit: :notify_reject do
+      transitions from: %i[draft approved], to: :rejected
+    end
+  end
   ##############################################################################
   ### Instance Methods #########################################################
 
   #########
 
-  # protected
+  protected
 
   #########
+  def notify_approve
+    NotificationsMailer.enrollment_approve(self).deliver
+  end
+
+  def notify_reject
+    NotificationsMailer.enrollment_reject(self).deliver
+  end
 
   #######
 

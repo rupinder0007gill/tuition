@@ -14,17 +14,17 @@ module AppSeeds
             email: 'rupinder0007gill@gmail.com',
             role: 'admin'
           },
-          { 
-            first_name: 'recker', 
-            last_name: 'swartz', 
+          {
+            first_name: 'recker',
+            last_name: 'swartz',
             email: 'reckerswartz@hotmail.com',
-            role: 'teacher' 
+            role: 'teacher'
           },
-          { 
-            first_name: 'aventum', 
-            last_name: 'cormac', 
+          {
+            first_name: 'aventum',
+            last_name: 'cormac',
             email: 'aventumcormac@hotmail.com',
-            role: 'student' 
+            role: 'student'
           }
         ]
 

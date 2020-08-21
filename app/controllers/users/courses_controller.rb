@@ -1,16 +1,15 @@
 class Users::CoursesController < Users::UserController
   load_and_authorize_resource find_by: :slug
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :approve, :reject]
+  before_action :set_course, only: %i[show edit update destroy approve reject]
 
   def index
-    if current_user.has_role?(:admin)
-      @state = params[:state] || 'draft'
-      @courses = Course.includes(:user).where(state: @state)
-    elsif current_user.has_role?(:teacher)
-      @courses = current_user.courses.all
-    else
-      @courses = Course.includes(:user).where(state: 'approved')
-    end
+    @courses = if current_user.has_role?(:admin)
+                 Course.includes(:user).all
+               elsif current_user.has_role?(:teacher)
+                 current_user.courses.all
+               else
+                 Course.includes([:user]).where(state: 'approved')
+               end
   end
 
   # GET /teachers/courses/1
@@ -47,27 +46,33 @@ class Users::CoursesController < Users::UserController
 
   # DELETE /teachers/courses/1
   def destroy
-    @course.destroy
+    @course.discard
     redirect_to users_courses_url, notice: 'Course was successfully destroyed.'
   end
 
   # GET /admins/courses/1/approve
   def approve
     @course.course_approved!
-    redirect_to users_courses_path, notice: "Course is approved."
+    redirect_to users_courses_path, notice: 'Course was successfully approved.'
   end
 
   # GET /admins/courses/1/reject
   def reject
     @course.course_rejected!
-    redirect_to users_courses_path, notice: "Course is rejected."
+    redirect_to users_courses_path, notice: 'Course was successfully rejected.'
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_course
-    @course = Course.friendly.find(params[:id])
+    @course = if current_user.has_role?(:admin)
+                Course.includes(:user).friendly.find(params[:id])
+              elsif current_user.has_role?(:teacher)
+                current_user.courses.includes(:user).friendly.find(params[:id])
+              else
+                Course.where(state: 'approved').friendly.find(params[:id])
+    end
   end
 
   # Only allow a trusted parameter "white list" through.

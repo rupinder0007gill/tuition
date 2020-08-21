@@ -1,0 +1,26 @@
+<thead>
+<tr>
+  <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Student</th>
+  <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Course</th>
+  <th width="100px">Approve</th>
+  <th width="100px">Reject</th>
+  <th width="100px">Delete</th>
+</tr>
+<%- enrollments.each do |enrollment| %>
+  <tr>
+    <td width="100px"><%= enrollment.user.name %></td>
+    <td width="100px"><%= enrollment.course.title %></td>
+    <%- if enrollment.draft? %>
+      <td width="100px"><%= link_to("Approve", approve_users_enrollment_path(enrollment), class: 'text-emerald-on-hover') %></td>
+      <td width="100px"><%= link_to("Reject", reject_users_enrollment_path(enrollment), data: {confirm: "Are you sure?"}, class: 'text-wild-watermelon-on-hover') %></td>
+    <%- elsif enrollment.approved? %>
+      <td width="100px"><span>Approved</span></td>
+      <td width="100px"><%= link_to("Reject", reject_users_enrollment_path(enrollment), data: {confirm: "Are you sure?"}, class: 'text-wild-watermelon-on-hover') %></td>
+    <%- elsif enrollment.rejected? %>
+      <td width="100px"><%= link_to("Approve", approve_users_enrollment_path(enrollment), class: 'text-emerald-on-hover') %></td>
+      <td width="100px"><span>Rejected</span></td>
+    <%-end %>
+    <td width="100px"><%= link_to("Delete", users_enrollment_path(enrollment), method: :delete, data: {confirm: "Are you sure?"}, class: 'text-wild-watermelon-on-hover') %></td>
+  </tr>
+<%- end %>
+</thead>

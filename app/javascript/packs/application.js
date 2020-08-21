@@ -18,7 +18,7 @@ require('trix');
 require('@rails/actiontext');
 
 // sub directory
-import './applications/ui/core/bootstrap/index';
+import './applications/ui/index';
 import './applications/client_side_validations/index';
 import './applications/stylesheets/application.scss';
 import './applications/plugins/index';

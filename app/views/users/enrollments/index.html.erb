@@ -1,0 +1,17 @@
+<!-- ================Start enrollment section================== -->
+<section class="p-5">
+  <div class="container">
+    <h1>Enrollments</h1>
+    <table class="responsive nowrap table table-hover text-white" id="dttb_" data-sort="true " data-source="<%= url_for(format: :json) %>">
+      <%- if current_user.has_role?(:admin) %>
+        <%= render "admin_table", enrollments: @enrollments %>
+      <%- elsif current_user.has_role?(:teacher) %>
+        <%= render "teacher_table", enrollments: @enrollments %>
+      <%- else %>
+        <%= render "student_table", enrollments: @enrollments %>
+      <%- end %>
+    </table>
+    <br>
+    <%= link_to 'New Enrollment', new_users_enrollment_path %>
+  </div>
+</section>

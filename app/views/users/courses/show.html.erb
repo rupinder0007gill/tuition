@@ -1,6 +1,7 @@
 <!-- ================Start Users section================== -->
 <section class="p-5">
   <div class="container">
+    <%= link_to 'Enroll', new_users_enrollment_path(course_id: @course.id) %>
     <%= link_to 'Edit', edit_users_course_path(@course) %> |
 <%= link_to 'Back', users_courses_path %>
   </div>

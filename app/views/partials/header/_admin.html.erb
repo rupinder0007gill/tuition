@@ -10,13 +10,15 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item font-size-12">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <%= link_to "Home", root_path, class: 'nav-link' %>
           </li>
           <li class="nav-item dropdown font-size-12">
             <a class="nav-link" href="#" id="navbarSettingsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Courses
             </a>
             <ul class="dropdown-menu dropdown-menu-right animated fadeInDown faster" aria-labelledby="navbarSettingsDropdown">
+              <li><a class="dropdown-item phl-4" href="<%= users_courses_path %>">All Courses</a></li>
+              <li><hr class="dropdown-divider "></li>
               <li><a class="dropdown-item phl-4" href="<%= users_courses_path(state: 'draft') %>">Draft Courses</a></li>
               <li><hr class="dropdown-divider "></li>
               <li><a class="dropdown-item phl-4" href="<%= users_courses_path(state: 'approved') %>">Approved Courses</a></li>
@@ -24,10 +26,7 @@
             </ul>
           </li>
           <li class="nav-item font-size-12">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-        <li class="nav-item font-size-12">
-            <a class="nav-link" href="#">About</a>
+            <%= link_to "Enrollments", users_enrollments_path, class: 'nav-link' %>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -40,7 +39,7 @@
               <li><a class="dropdown-item phl-4" href="#">Another action</a></li>
               <li><hr class="dropdown-divider "></li>
               <li>
-                <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item phl-4 text-wild_watermelon-on-hover') do %>
+                <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item phl-4 text-wild-watermelon-on-hover') do %>
                   <i class="fas fa-sign-out-alt"></i> Sign-out
                 <% end %>
               </li>

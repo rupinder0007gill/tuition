@@ -26,14 +26,11 @@
 #
 class DateTimeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if record.public_send("#{attribute}_before_type_cast").present? && value.blank?
-      record.errors.add(attribute, :invalid)
-    end
+    record.errors.add(attribute, :invalid) if record.public_send("#{attribute}_before_type_cast").present? && value.blank?
   end
 end
 
 class Course < ApplicationRecord
-  include AASM
   ##############################################################################
   ### Attributes ###############################################################
   extend FriendlyId
@@ -44,7 +41,7 @@ class Course < ApplicationRecord
 
   ##############################################################################
   ### Includes and Extensions ##################################################
-  has_rich_text :content
+  include AASM
 
   ##############################################################################
   ### Callbacks ################################################################
@@ -52,6 +49,8 @@ class Course < ApplicationRecord
   ##############################################################################
   ### Associations #############################################################
   belongs_to :user
+  has_many :enrollments, dependent: :destroy
+  has_rich_text :content
 
   ##############################################################################
   ### Validations ##############################################################
@@ -68,17 +67,17 @@ class Course < ApplicationRecord
 
   ##############################################################################
   ### Class Methods ############################################################
-  aasm column: "state", logger: Rails.logger do
+  aasm column: 'state', logger: Rails.logger do
     state :draft, initial: true
     state :approved
     state :rejected
 
     event :course_approved, after_commit: :notify_approve do
-      transitions from: [:draft], to: :approved
+      transitions from: %i[draft rejected], to: :approved
     end
 
     event :course_rejected, after_commit: :notify_reject do
-      transitions from: [:draft], to: :rejected
+      transitions from: %i[draft approved], to: :rejected
     end
   end
 

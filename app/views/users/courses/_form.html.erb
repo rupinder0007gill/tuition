@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12-6 bg-mirage rounded-lg ">
     <div class="p-5 mx-auto w-100">
-      <%= form_with(model: course, local: true, url: url) do |form| %>
+      <%= form_with(model: course, local: true, url: url, validate: true ) do |form| %>
         <% if course.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>

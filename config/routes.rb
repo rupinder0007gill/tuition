@@ -25,7 +25,7 @@
 #                 user_password_expired GET    /password_expired(.:format)                                                              devise/password_expired#show
 #                                       PATCH  /password_expired(.:format)                                                              devise/password_expired#update
 #                                       PUT    /password_expired(.:format)                                                              devise/password_expired#update
-#                                  root GET    /                                                                                        users/dashboard#index
+#                                  root GET    /                                                                                        users/courses#index
 #                  approve_users_course GET    /courses/:id/approve(.:format)                                                           users/courses#approve
 #                   reject_users_course GET    /courses/:id/reject(.:format)                                                            users/courses#reject
 #                         users_courses GET    /courses(.:format)                                                                       users/courses#index
@@ -36,6 +36,16 @@
 #                                       PATCH  /courses/:id(.:format)                                                                   users/courses#update
 #                                       PUT    /courses/:id(.:format)                                                                   users/courses#update
 #                                       DELETE /courses/:id(.:format)                                                                   users/courses#destroy
+#              approve_users_enrollment GET    /enrollments/:id/approve(.:format)                                                       users/enrollments#approve
+#               reject_users_enrollment GET    /enrollments/:id/reject(.:format)                                                        users/enrollments#reject
+#                     users_enrollments GET    /enrollments(.:format)                                                                   users/enrollments#index
+#                                       POST   /enrollments(.:format)                                                                   users/enrollments#create
+#                  new_users_enrollment GET    /enrollments/new(.:format)                                                               users/enrollments#new
+#                 edit_users_enrollment GET    /enrollments/:id/edit(.:format)                                                          users/enrollments#edit
+#                      users_enrollment GET    /enrollments/:id(.:format)                                                               users/enrollments#show
+#                                       PATCH  /enrollments/:id(.:format)                                                               users/enrollments#update
+#                                       PUT    /enrollments/:id(.:format)                                                               users/enrollments#update
+#                                       DELETE /enrollments/:id(.:format)                                                               users/enrollments#destroy
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -78,15 +88,24 @@ Rails.application.routes.draw do
              }
 
   as :user do
-    root 'users/dashboard#index'
+    root 'users/courses#index'
     resources :courses,
               path: 'courses',
               controller: 'users/courses',
               as: :users_courses do
-                member do
-                  get 'approve'
-                  get 'reject'
-                end
-              end
+      member do
+        get 'approve'
+        get 'reject'
+      end
+    end
+    resources :enrollments,
+              path: 'enrollments',
+              controller: 'users/enrollments',
+              as: :users_enrollments do
+      member do
+        get 'approve'
+        get 'reject'
+      end
+    end
   end
 end

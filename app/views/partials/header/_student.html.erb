@@ -10,15 +10,15 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item font-size-12">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <%= link_to "Home", root_path, class: 'nav-link' %>
           </li>
           <li class="nav-item font-size-12">
-            <a class="nav-link" href="/courses">Courses</a>
+            <%= link_to "Courses", users_courses_path, class: 'nav-link' %>
           </li>
           <li class="nav-item font-size-12">
-            <a class="nav-link" href="#">Pricing</a>
+            <%= link_to "Enrollments", users_enrollments_path, class: 'nav-link' %>
           </li>
-        <li class="nav-item font-size-12">
+          <li class="nav-item font-size-12">
             <a class="nav-link" href="#">About</a>
           </li>
         </ul>
@@ -32,7 +32,7 @@
               <li><a class="dropdown-item phl-4" href="#">Another action</a></li>
               <li><hr class="dropdown-divider "></li>
               <li>
-                <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item phl-4 text-wild_watermelon-on-hover') do %>
+                <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item phl-4 text-wild-watermelon-on-hover') do %>
                   <i class="fas fa-sign-out-alt"></i> Sign-out
                 <% end %>
               </li>

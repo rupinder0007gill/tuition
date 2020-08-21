@@ -10,7 +10,7 @@ module AppSeeds
         roles_attrs = [
           { name: 'admin' },
           { name: 'teacher' },
-          { name: 'student' },
+          { name: 'student' }
         ]
 
         roles_attrs.each do |role_attr|

@@ -11,8 +11,12 @@ class Ability
       can :manage, :all
     elsif user.has_role?(:teacher)
       can :manage, Course, user_id: user.id
+      can :manage, Enrollment, course_id: user.courses.pluck(:id)
+      cannot :create, Enrollment
     elsif user.has_role?(:student)
       can :read, Course
+      can :read, Enrollment, user_id: user.id
+      can :create, Enrollment
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -68,13 +68,28 @@
   <body>
 
   <%= render partial: 'partials/header/header' if user_signed_in? %>
-  <%= render partial: 'partials/sidebar/sidebar' if user_signed_in? %>
 
   <!--**********************************
           Main wrapper start
   ***********************************-->
-  <main class="page-content h-100">
+  <main class="page-content">
+    <!-- ===============================================-->
+    <!--    Notification-->
+    <!-- ===============================================-->
     <div id="pageMessages" data-notice="<%= notice %>" data-alert="<%= alert %>"></div>
+    <div class="notice_notification hide">
+      <div class="notice_notification__content">
+        <i class="notice_notification__icon"></i>
+        <h3 class="notice_notification__title"></h3>
+        <p class="notice_notification__text">
+        </p>
+      </div>
+      <button class="notice_notification__button">
+      </button>
+    </div>
+    <!-- ===============================================-->
+    <!--    End Notification-->
+    <!-- ===============================================-->
     <div class="h-100">
       <%= yield %>
     </div>

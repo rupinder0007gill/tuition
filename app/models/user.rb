@@ -75,7 +75,8 @@ class User < ApplicationRecord
   ##############################################################################
   ### Associations #############################################################
   has_many :courses
-
+  has_many :enrollments, dependent: :destroy
+  has_many :enrolled_course, through: :enrollments, source: :user
   ##############################################################################
   ### Validations ##############################################################
   validates :email, uniqueness: true, presence: true,
@@ -141,6 +142,7 @@ class User < ApplicationRecord
 
   def assign_default_role
     return add_role(role) if role.present?
+
     add_role(:student) if roles.blank?
   end
 

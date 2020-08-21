@@ -4,7 +4,7 @@
     <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Teacher</th>
     <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Start Date</th>
     <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">End Date</th>
-    <th width="100px">Enroll</th>
+    <th width="100px">Show</th>
   </tr>
   <%- @courses.each do |course| %>
     <tr>
@@ -12,7 +12,7 @@
       <td width="100px"><%= course.user.name %></td>
       <td width="100px"><%= date_format(course.start_datetime) %></td>
       <td width="100px"><%= date_format(course.end_datetime) %></td>
-      <td width="100px"><%= link_to("Enroll", "#") %></td>
+      <td width="100px"><%= link_to("Show", users_course_path(course)) %></td>
     </tr>
   <%- end %>
 </thead>
