@@ -1,0 +1,17 @@
+<!-- ================Start Course section================== -->
+<section class="p-5">
+  <div class="container">
+    <h1>Courses</h1>
+    <table class="responsive nowrap table table-hover" id="dttb_" data-sort="true" data-source="<%= url_for(format: :json) %>">
+      <%- if current_user.has_role?(:admin) %>
+        <%= render "admin_table", courses: @courses, state: @state %>
+      <%- elsif current_user.has_role?(:teacher) %>
+        <%= render "teacher_table", courses: @courses %>
+      <%- else %>
+        <%= render "student_table", courses: @courses %>
+      <%- end %>
+    </table>
+    <br>
+    <%= link_to 'New Course', new_users_course_path %>
+  </div>
+</section>

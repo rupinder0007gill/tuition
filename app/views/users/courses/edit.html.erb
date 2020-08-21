@@ -1,11 +1,8 @@
-
 <!-- ================Start Users section================== -->
 <section class="p-5">
   <div class="container">
-    <h1>New Course</h1>
-
-    <%= render 'form', teachers_course: @teachers_course, url: teachers_courses_path %>
-
+    <h1>Editing Course</h1>
+    <%= render 'form', course: @course, url: users_course_path(@course) %>
 
   </div>
 </section>

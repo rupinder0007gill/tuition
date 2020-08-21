@@ -33,6 +33,7 @@ class DateTimeValidator < ActiveModel::EachValidator
 end
 
 class Course < ApplicationRecord
+  include AASM
   ##############################################################################
   ### Attributes ###############################################################
   extend FriendlyId
@@ -67,15 +68,35 @@ class Course < ApplicationRecord
 
   ##############################################################################
   ### Class Methods ############################################################
+  aasm column: "state", logger: Rails.logger do
+    state :draft, initial: true
+    state :approved
+    state :rejected
+
+    event :course_approved, after_commit: :notify_approve do
+      transitions from: [:draft], to: :approved
+    end
+
+    event :course_rejected, after_commit: :notify_reject do
+      transitions from: [:draft], to: :rejected
+    end
+  end
 
   ##############################################################################
   ### Instance Methods #########################################################
 
   #########
 
-  # protected
+  protected
 
   #########
+  def notify_approve
+    NotificationsMailer.course_approve(self).deliver
+  end
+
+  def notify_reject
+    NotificationsMailer.course_reject(self).deliver
+  end
 
   #######
 

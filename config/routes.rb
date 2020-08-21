@@ -26,14 +26,16 @@
 #                                       PATCH  /password_expired(.:format)                                                              devise/password_expired#update
 #                                       PUT    /password_expired(.:format)                                                              devise/password_expired#update
 #                                  root GET    /                                                                                        users/dashboard#index
-#                      teachers_courses GET    /courses(.:format)                                                                       teachers/courses#index
-#                                       POST   /courses(.:format)                                                                       teachers/courses#create
-#                   new_teachers_course GET    /courses/new(.:format)                                                                   teachers/courses#new
-#                  edit_teachers_course GET    /courses/:id/edit(.:format)                                                              teachers/courses#edit
-#                       teachers_course GET    /courses/:id(.:format)                                                                   teachers/courses#show
-#                                       PATCH  /courses/:id(.:format)                                                                   teachers/courses#update
-#                                       PUT    /courses/:id(.:format)                                                                   teachers/courses#update
-#                                       DELETE /courses/:id(.:format)                                                                   teachers/courses#destroy
+#                  approve_users_course GET    /courses/:id/approve(.:format)                                                           users/courses#approve
+#                   reject_users_course GET    /courses/:id/reject(.:format)                                                            users/courses#reject
+#                         users_courses GET    /courses(.:format)                                                                       users/courses#index
+#                                       POST   /courses(.:format)                                                                       users/courses#create
+#                      new_users_course GET    /courses/new(.:format)                                                                   users/courses#new
+#                     edit_users_course GET    /courses/:id/edit(.:format)                                                              users/courses#edit
+#                          users_course GET    /courses/:id(.:format)                                                                   users/courses#show
+#                                       PATCH  /courses/:id(.:format)                                                                   users/courses#update
+#                                       PUT    /courses/:id(.:format)                                                                   users/courses#update
+#                                       DELETE /courses/:id(.:format)                                                                   users/courses#destroy
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -79,7 +81,12 @@ Rails.application.routes.draw do
     root 'users/dashboard#index'
     resources :courses,
               path: 'courses',
-              controller: 'teachers/courses',
-              as: :teachers_courses
+              controller: 'users/courses',
+              as: :users_courses do
+                member do
+                  get 'approve'
+                  get 'reject'
+                end
+              end
   end
 end

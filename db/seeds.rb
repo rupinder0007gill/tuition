@@ -10,4 +10,5 @@
 
 # load other seeds
 Dir['db/seeds/*.rb'].each { |f| require Rails.root.join(f) }
+AppSeeds::Roles.seed
 AppSeeds::Users.seed

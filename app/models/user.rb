@@ -54,6 +54,7 @@
 class User < ApplicationRecord
   ##############################################################################
   ### Attributes ###############################################################
+  attr_accessor :role
 
   ##############################################################################
   ### Constants ################################################################
@@ -139,6 +140,7 @@ class User < ApplicationRecord
   end
 
   def assign_default_role
+    return add_role(role) if role.present?
     add_role(:student) if roles.blank?
   end
 

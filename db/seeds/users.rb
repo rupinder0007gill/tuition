@@ -11,9 +11,21 @@ module AppSeeds
           {
             first_name: 'Rupinder',
             last_name: 'Gill',
-            email: 'rupinder0007gill@gmail.com'
+            email: 'rupinder0007gill@gmail.com',
+            role: 'admin'
           },
-          { first_name: 'recker', last_name: 'swartz', email: 'reckerswartz@hotmail.com' }
+          { 
+            first_name: 'recker', 
+            last_name: 'swartz', 
+            email: 'reckerswartz@hotmail.com',
+            role: 'teacher' 
+          },
+          { 
+            first_name: 'aventum', 
+            last_name: 'cormac', 
+            email: 'aventumcormac@hotmail.com',
+            role: 'student' 
+          }
         ]
 
         users_attrs.each do |user_attr|
@@ -23,7 +35,6 @@ module AppSeeds
           u.password = 'teste12345'
           u.skip_confirmation!
           u.save(validate: false)
-          u.add_role(:admin)
         end
       end
     end

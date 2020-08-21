@@ -5,7 +5,7 @@
       <div class="p-5 mx-auto w-100">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="floating-label my-5">
-            <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control lh-lg bg-mirage text-white my-3 rounded-lg border-oxford-blue', placeholder: 'name@example.com' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control lh-lg bg-mirage text-white my-3 rounded-lg border-oxford-blue', placeholder: 'name@example.com' %>
             <%= f.label :email, 'Username or Email address' %>
           </div>
           <div class="floating-label my-5">

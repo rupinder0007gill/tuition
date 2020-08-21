@@ -1,0 +1,39 @@
+<header>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-cornflower-blue">
+    <div class="container-fluid font-weight-bold">
+      <a class="navbar-brand" href="#">
+        <%= inline_svg_tag "logos/logo-white.svg", size: "40*28" %>
+      </a>
+      <button class="navbar-toggler collapsed text-white-on-hover" type="button" data-toggle="collapse" data-target="#sidenav-left-full" aria-controls="sidenav-left-full" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-th-list fa-lg"></i>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item font-size-12">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item font-size-12">
+            <a class="nav-link" href="/courses">Courses</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarSettingsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-cog fa-lg"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown faster" aria-labelledby="navbarSettingsDropdown">
+              <li><a class="dropdown-item phl-4" href="#">Action</a></li>
+              <li><a class="dropdown-item phl-4" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider "></li>
+              <li>
+                <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item phl-4 text-wild_watermelon-on-hover') do %>
+                  <i class="fas fa-sign-out-alt"></i> Sign-out
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

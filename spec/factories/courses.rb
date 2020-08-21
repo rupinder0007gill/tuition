@@ -24,5 +24,10 @@
 #
 FactoryBot.define do
   factory :course do
+    title { Faker::Name.unique.name }
+    start_datetime { Faker::Date.between(from: '2020-08-21', to: '2020-08-25') }
+    end_datetime { Faker::Date.between(from: '2020-09-21', to: '2020-09-25') }
+    length_of_students { Faker::Number.decimal_part(digits: 2) }
+    association :user, factory: :user
   end
 end
